@@ -35,7 +35,7 @@ def build_part1_RNN(window_size):
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
 
-    replace_pattern = r"[^a-z\d\!,\.:;\? ]"
+    replace_pattern = r"[^a-z\!,\.:;\? ]"
     # compiled_pattern = re.compile(replace_pattern)
     # text.lower()
     replaced_text = re.sub(replace_pattern, ' ', text)
@@ -46,8 +46,8 @@ def cleaned_text(text):
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     text_size = len(text)
-    inputs = [list(text[i:i + window_size]) for i in range(text_size - window_size - step_size + 1)]
-    outputs = [list(text[i:i + step_size]) for i in range(window_size, text_size - step_size + 1)]
+    inputs = [list(text[i:i + window_size]) for i in range(0, text_size - window_size, step_size)]
+    outputs = [text[i] for i in range(window_size, text_size, step_size)]
 
     return inputs,outputs
 

@@ -38,19 +38,19 @@ class TestMyAnswer(TestCase):
 
         assert len(text) == 10
 
-        window_size = 5
-        step_size = 3
+        window_size = 4
+        step_size = 2
 
         expected_input = [
-            ['a', 'b', 'c', 'd', 'e'],
-            ['b', 'c', 'd', 'e', 'f'],
-            ['c', 'd', 'e', 'f', 'g']
+            list("abcd"),
+            list("cdef"),
+            list("efgh")
         ]
 
         expected_output = [
-            ['f', 'g', 'h'],
-            ['g', 'h', 'i'],
-            ['h', 'i', 'j']
+            'e',
+            'g',
+            'i'
         ]
 
         actual_input, actual_output = window_transform_text(
