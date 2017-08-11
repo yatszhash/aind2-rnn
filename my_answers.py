@@ -4,14 +4,16 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 import keras
+import re
 
 
 # TODO: fill out the function below that transforms the input series 
 # and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_series(series, window_size):
     # containers for input/output pairs
-    X = []
-    y = []
+    series_size = series.shape[0]
+    X = [series[i:i + window_size] for i in range(series_size - window_size)]
+    y = [series[i] for i in range(window_size, series_size)]
 
     # reshape each 
     X = np.asarray(X)
@@ -23,20 +25,29 @@ def window_transform_series(series, window_size):
 
 # TODO: build an RNN to perform regression on our time series input/output data
 def build_part1_RNN(window_size):
-    pass
+    model = Sequential()
 
+    model.add(LSTM(5, input_shape=(window_size, 1)))
+    model.add(Dense(1, activation="sigmoid"))
+    return model
 
 ### TODO: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
 
-    return text
+    replace_pattern = r"[^a-z\d\!,\.:;\? ]"
+    # compiled_pattern = re.compile(replace_pattern)
+    # text.lower()
+    replaced_text = re.sub(replace_pattern, ' ', text)
+
+    return replaced_text
 
 ### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
-    inputs = []
-    outputs = []
+    text_size = len(text)
+    inputs = [list(text[i:i + window_size]) for i in range(text_size - window_size - step_size + 1)]
+    outputs = [list(text[i:i + step_size]) for i in range(window_size, text_size - step_size + 1)]
 
     return inputs,outputs
 
