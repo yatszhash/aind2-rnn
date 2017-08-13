@@ -22,7 +22,7 @@ def extract_partial_text_pairs(text_file, first_size, second_size, num_part):
         extracted = []
 
         for _ in range(num_part):
-            start_ind = random.randint(0, all_text_size - 1 - first_size - second_size)
+            start_ind = random.randint(1000, all_text_size - 1 - first_size - second_size)
             extracted.append((all_text[start_ind: start_ind + first_size],
                               all_text[start_ind + first_size: start_ind + first_size + second_size]))
     return extracted
