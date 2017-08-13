@@ -42,9 +42,9 @@ class TestMyAnswer(TestCase):
         step_size = 2
 
         expected_input = [
-            list("abcd"),
-            list("cdef"),
-            list("efgh")
+            "abcd",
+            "cdef",
+            "efgh"
         ]
 
         expected_output = [
@@ -58,3 +58,27 @@ class TestMyAnswer(TestCase):
 
         self.assertListEqual(actual_input, expected_input)
         self.assertListEqual(actual_output, expected_output)
+
+        window_size = 3
+        step_size = 2
+
+        expected_input = [
+            "abc",
+            "cde",
+            "efg",
+            "ghi",
+        ]
+
+        expected_output = [
+            'd',
+            'f',
+            'h',
+            'j'
+        ]
+
+        actual_input, actual_output = window_transform_text(
+            text, window_size, step_size)
+
+        self.assertListEqual(actual_input, expected_input)
+        self.assertListEqual(actual_output, expected_output)
+

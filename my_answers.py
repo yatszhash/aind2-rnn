@@ -46,7 +46,7 @@ def cleaned_text(text):
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     text_size = len(text)
-    inputs = [list(text[i:i + window_size]) for i in range(0, text_size - window_size, step_size)]
+    inputs = [text[i:i + window_size] for i in range(0, text_size - window_size, step_size)]
     outputs = [text[i] for i in range(window_size, text_size, step_size)]
 
     return inputs,outputs
