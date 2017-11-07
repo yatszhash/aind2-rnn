@@ -1,3 +1,12 @@
+This branch is my solution for the project "Recurrent Neural Networks" in Udacity Nanodegree.
+
+What is this project is described below by the udacity stuff .
+
+If you are a udacity AI Nanodegree student, don't use for cheating.
+
+
+======================================================================================================
+
 # Recurrent Neural Networks course project: time series prediction and text generation
 
 ## Accelerating the Training Process 
